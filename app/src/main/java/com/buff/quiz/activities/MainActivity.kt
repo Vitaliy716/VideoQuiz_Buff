@@ -51,7 +51,7 @@ class MainActivity : AppCompatActivity() {
                 quizIndex++
                 getVideoQuiz()
                 if (quizIndex < 6)
-                    mainHandler.postDelayed(this, 10000)
+                    mainHandler.postDelayed(this, 20000)
             }
         })
 
@@ -126,11 +126,10 @@ class MainActivity : AppCompatActivity() {
         Thread(Runnable {
             while (nProgressVal > 0 && !isAnswered) {
                 nProgressVal = (((nProgressSec.toDouble() / 1000) / quizInfo.time_to_show) * 100).toInt()
-//                Log.e("nprogressval",nProgressVal.toString())
                 // Update the progress bar and display the current value
                 handler.post(Runnable {
                     question_progress!!.progress = nProgressVal
-                    question_second!!.text = (nProgressSec / 1000).toString()//nProgressVal.toString() + "/" + progressBar!!.max
+                    question_second!!.text = (nProgressSec / 1000).toString()
                 })
                 try {
                     Thread.sleep(100)
